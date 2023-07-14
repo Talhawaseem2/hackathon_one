@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <Hero />
       <ProductsType />
-      {/* Fecthing data aega yahan per */}
+      {/* Fecthing data error */}
       <Jewellery />
       <NewsLatter />
 
