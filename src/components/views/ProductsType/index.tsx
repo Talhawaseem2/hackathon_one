@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const ProductsType = () => {
+const productsType = () => {
   return (
     <div className="py-16 px-2 space-y-5">
       {/* Heading */}
@@ -88,4 +88,4 @@ const ProductsType = () => {
   );
 };
 
-export default ProductsType;
+export default productsType;

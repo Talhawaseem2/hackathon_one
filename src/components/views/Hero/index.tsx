@@ -6,7 +6,7 @@ import Image from 'next/image'
 import HeroImage from "/public/hero.webp"
 
 
-const Hero = () => {
+const hero = () => {
     const btnText = "Start \n Shopping";
     return (
         <div className='py-5 flex justify-between items-center px-2'>
@@ -47,4 +47,4 @@ const Hero = () => {
     )
 }
 
-export default Hero
+export default hero
