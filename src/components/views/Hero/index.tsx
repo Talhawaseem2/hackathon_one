@@ -40,7 +40,7 @@ const hero = () => {
             </div>
 
             {/* Right Image */}
-            <div className='hidden md:flex bg-gray-200 rounded-full'>
+            <div className='hidden md:flex bg-[#FFECE3] rounded-full'>
                 <Image src={HeroImage} alt='Hero image' />
             </div>
         </div>
