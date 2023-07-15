@@ -15,6 +15,7 @@ import { Menu, Search, ShoppingCart } from 'lucide-react'
 
 const navbar = () => {
     return (
+        <div className="sticky top-0 backdrop-blur-lg bg-[#ffffffba] z-50">
         <div className='flex justify-between items-center py-6 wrapper'>
             <Image src={Logo} alt='ecom' />
             <div className='hidden md:block'>
@@ -26,15 +27,15 @@ const navbar = () => {
                 </ul>
             </div>
             <div className='hidden md:block'>
-            <div className='border-2 flex items-center text-gray-600 px-3 rounded-md'>
+            <div className='border flex items-center text-gray-600 px-3 rounded-md'>
                 <Search />
                 <input size={35} placeholder='Search' type='text' />
             </div>
             </div>
             <div className='flex gap-x-2'>
                 {/* Cart */}
-                <div className='h-9 w-9 rounded-full bg-gray-200 _center'>
-                    <ShoppingCart className='w-5 h-5 ' />
+                <div className="flex-shrink-0 relative w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                    <ShoppingCart size={20} />
                 </div>
                 {/* Mobile Nav */}
                 <div className='md:hidden'>
@@ -54,6 +55,7 @@ const navbar = () => {
 
                 </div>
             </div>
+        </div>
         </div>
     )
 }
