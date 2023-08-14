@@ -23,7 +23,7 @@ const navbar = () => {
                     <li><Link href={"/"}>Female</Link></li>
                     <li><Link href={"/"}>Male</Link></li>
                     <li><Link href={"/"}>Kids</Link></li>
-                    <li><Link href={"/"}>All Products</Link></li>
+                    <li><Link href={"/products/"}>All Products</Link></li>
                 </ul>
             </div>
             <div className='hidden md:block'>
