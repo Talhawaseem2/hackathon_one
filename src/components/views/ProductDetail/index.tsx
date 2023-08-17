@@ -22,13 +22,13 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
   return (
     <div>
       {/* {left} */}
-      <div className="flex gap-x-6">
+      <div className="flex gap-x-4 md:gap-x-8">
         {/* left */}
         <div className="space-y-4">
           {item.image.map((subItem: imagesType, index: number) => (
             <div
               key={index}
-              className="w-28"
+              className="w-16 md:w-28"
               onClick={() => setImageForPreviewOfSelected(subItem._key)}
             >
               <Image
@@ -42,7 +42,7 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
         </div>
 
         {/* right */}
-        <div className="w-[33rem]">
+        <div className="w-[33rem] flex flex-wrap-0">
           {item.image.map((subItem: imagesType, index: number) => {
             if (subItem._key === ImageForPreviewOfSelected) {
               return (
@@ -58,7 +58,24 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
           })}
         </div>
       </div>
-      <div></div>
+      {/* right */}
+      <div>
+        <div>
+          <h1>{item.productName}</h1>
+          <p>{item.productTypes[1]}</p>
+        </div>
+        <div>
+          <p>Select Size</p>
+        </div>
+        <div className="flex gap-4">
+          {
+              item.size.map((subItem : string , index : number) => (
+              <div key={index} className="rounded-full bg-gray-100 w-12 h-12 flex justify-center items-center">{subItem}</div>
+            ))
+          }
+        </div>
+        <div></div>
+      </div>
     </div>
   );
 };
