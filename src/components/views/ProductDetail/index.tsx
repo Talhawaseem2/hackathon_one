@@ -86,7 +86,7 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
         <div className="space-y-2">
           <p className="text-lg font-semibold text-gray-700">Select Size</p>
           <div className="flex gap-2 text-pink-600">
-            {item.size.map((subItem: string, index: number) => (
+            {item.size && item.size.map((subItem: string, index: number) => (
               <div
                 key={index}
                 className="hover:shadow-xl font-semibold cursor-pointer rounded-full bg-gray-100 w-12 h-12 flex justify-center items-center"
