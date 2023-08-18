@@ -35,7 +35,7 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
   };
   
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center">
+    <div className="flex flex-col lg:flex-row justify-center items-center py-7">
       {/* {left} */}
       <div className="flex gap-x-4 md:gap-x-8">
         {/* left */}
