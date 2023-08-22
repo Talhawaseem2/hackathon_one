@@ -1,5 +1,5 @@
 "use client"
-import { ReactNode, createContext, useReducer } from "react";
+import { ReactNode, createContext, useEffect, useReducer } from "react";
 import React from 'react'
 import { cartReducer } from "../reducer";
 
@@ -7,13 +7,35 @@ import { cartReducer } from "../reducer";
 export const cartContext = createContext<any>(null)
 
 const ContextWrapper = ({children} : {children : ReactNode}) => {
+  let localVal = localStorage.getItem("cartState");
+
     const iniatizilerOfCart = {
-        cart : [],
+        cart : [
+          {
+            productId : "",
+            quantity : 2,
+          },
+        ],
     }
 
     const [state, dispatch] = useReducer(cartReducer, iniatizilerOfCart)
+    useEffect(() => {
+      let cart = localStorage.getItem("cart") as string
+
+      if(cart === null) {
+        localStorage.setItem("cart" , JSON.stringify(state.cart));
+      }else{
+        iniatizilerOfCart.cart = JSON.parse(cart);
+      }
+    })
     
-  return (
+    useEffect(() => {
+      localStorage.setItem("cart" , JSON.stringify(state.cart))
+    }, [state.cart])
+    
+
+
+    return (
     <cartContext.Provider value={{state , dispatch}}>
         {children}
     </cartContext.Provider>
@@ -21,3 +43,5 @@ const ContextWrapper = ({children} : {children : ReactNode}) => {
 }
 
 export default ContextWrapper
+
+

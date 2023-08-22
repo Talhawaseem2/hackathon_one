@@ -20,20 +20,26 @@ function urlFor(source: any) {
 
 const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
   let {state , dispatch} = useContext(cartContext)
-  console.log(state);
-
   const [ImageForPreviewOfSelected, setImageForPreviewOfSelected] =
     useState<string>(item.image[0]._key);
   const [quantity, setQuantity] = useState(1);
 
   function incrementTheQuantity() {
     setQuantity(quantity + 1);
-  }
+  };
   function decrementTheQuantity() {
     if (quantity === 0) {
     } else {
       setQuantity(quantity - 1);
     }
+  };
+
+  function handleAddToCart() {
+    let dataToAddInCart = {
+      productId : item._id,
+      quantity : quantity,
+    }
+    dispatch({payload : "addToCart", data: dataToAddInCart})
   }
 
   return (
@@ -118,7 +124,7 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
             </div>
           </div>
           <div className="flex gap-x-8 items-center">
-            <Button className="px-6 h-12 text-white text-lg bg-black mt-5  ">
+            <Button onClick={()=>handleAddToCart()} className="px-6 h-12 text-white text-lg bg-black mt-5  ">
               <ShoppingCart className="mr-2 h-6 w-6" />
               Add to Cart
             </Button>
