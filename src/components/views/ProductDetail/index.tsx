@@ -5,12 +5,17 @@ import {
 } from "@/components/utils/ProductsDataArrayAndType";
 import { FC, useContext, useState } from "react";
 import { client } from "../../../../sanity/lib/client";
-import { SanityClient } from "sanity";
+import { PortableTextInput, SanityClient } from "sanity";
 import Image from "next/image";
 import ImageUrlBuilder from "@sanity/image-url";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { cartContext } from "@/Global/Context";
+import { PortableText } from "@portabletext/react";
+import toast, { Toaster } from "react-hot-toast";
+
+
+
 
 const builder: any = ImageUrlBuilder(client);
 
@@ -19,30 +24,35 @@ function urlFor(source: any) {
 }
 
 const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
-  let {state , dispatch} = useContext(cartContext)
+  let { state, dispatch } = useContext(cartContext);
   const [ImageForPreviewOfSelected, setImageForPreviewOfSelected] =
     useState<string>(item.image[0]._key);
   const [quantity, setQuantity] = useState(1);
 
   function incrementTheQuantity() {
     setQuantity(quantity + 1);
-  };
+  }
   function decrementTheQuantity() {
     if (quantity === 0) {
     } else {
       setQuantity(quantity - 1);
     }
-  };
+  }
+
+  const noification = (title : string) => toast(`😁 ${quantity} ${title} added to cart`);
 
   function handleAddToCart() {
     let dataToAddInCart = {
-      productId : item._id,
-      quantity : quantity,
-    }
-    dispatch({payload : "addToCart", data: dataToAddInCart})
+      productId: item._id,
+      quantity: quantity,
+    };
+    dispatch({ payload: "addToCart", data: dataToAddInCart });
+    noification(item.productName)
   }
 
   return (
+    <div>
+      <Toaster />
       <div className="flex flex-col lg:flex-row justify-center items-center py-7">
         {/* {left} */}
         <div className="flex gap-x-4 md:gap-x-8">
@@ -124,7 +134,10 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
             </div>
           </div>
           <div className="flex gap-x-8 items-center">
-            <Button onClick={()=>handleAddToCart()} className="px-6 h-12 text-white text-lg bg-black mt-5  ">
+            <Button
+              onClick={() => handleAddToCart()}
+              className="px-6 h-12 text-white text-lg bg-black mt-5  "
+            >
               <ShoppingCart className="mr-2 h-6 w-6" />
               Add to Cart
             </Button>
@@ -132,6 +145,35 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
           </div>
         </div>
       </div>
+      <div>
+        <div className="relative py-14 px-2 border-b border-gray-400">
+          <h2 className="top-0 absolute lg:text-9xl text-7xl font-bold text-[#F2F3F7] text-center -z-50">Overview</h2>
+          <p className="font-semibold text-xl">Product Information</p>
+        </div>
+        <div className="text-gray-600-600">
+          <div className="flex  px-2 py-4 ">
+                  <div className="w-80   ">
+                  <h3 className="font-semibold">PRODUCT DETAILS</h3>
+                  </div>
+                  <p className="">
+                    <PortableText value={item.description} />
+                  </p>
+          </div>
+          <div className="flex  px-2 py-4 ">
+                  <div className="w-64   ">
+                  <h3 className="font-semibold">PRODUCT CARE</h3>
+                  </div>
+                  <ul className=" pl-3 list-disc font-semibold text-gray-900">
+                    <li>Hand wash using cold water.</li>
+                    <li>Do not using bleach.</li>
+                    <li>Hang it to dry.</li>
+                    <li>Iron on low temperature.</li>
+                  </ul>
+          </div>
+        </div>
+      </div>
+      <div className="h-16" />
+    </div>
   );
 };
 

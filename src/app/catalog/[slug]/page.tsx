@@ -1,3 +1,4 @@
+"use client"
 import BASE_PATH_FORAPI from "@/components/shared/BasePath"
 import { responseType, oneProductType } from "@/components/utils/ProductsDataArrayAndType"
 import ProductDetail from "@/components/views/ProductDetail"
