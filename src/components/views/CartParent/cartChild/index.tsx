@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { oneProductType } from "@/components/utils/ProductsDataArrayAndType";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
-import { FC, useContext, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 
 
@@ -13,21 +13,23 @@ import { FC, useContext, useState } from "react";
 
 
 const CartComp = ({allProductsOfStore} : {allProductsOfStore: Array<oneProductType>}) => {
+const [allProductsForCart, setallProductsForCart] = useState<any>([])
+useEffect(() => {
+let stateStorage : any = localStorage.getItem("cart") as string;
+stateStorage = JSON.parse(stateStorage);
+if(stateStorage) {
+  let data = allProductsOfStore.filter((item : oneProductType) => {
+    for (let index = 0; index < stateStorage.length; index++) {
+      const element = stateStorage[index];
+      if(element.productId === item._id){
+        return true
+      }
+    }
+  })
+  setallProductsForCart(data);
+}
+}, [])
 
-  let { state } = useContext(cartContext);                                  // cart items from context mein ids
-
-  const [AllProductsForCart , setAllProductsForCart] = useState<Array<oneProductType> | []>([])
-
-  console.log("This is all : ", state)
-
-//   state?.cart.array.forEach((element : {productId : string , quantity : number  }) => {
-//     for (let index = 0; index < allProductsOfStore.result.length; index++) {
-//         const item : oneProductType = allProductsOfStore.result[index];
-//         if (item._id === element.productId) {
-//             setAllProductsForCart ([...AllProductsForCart, item])
-//         }
-//     }
-//   })
   return (
     <div className="py-10 px-4 md:px-10">
       {/* first  */}
@@ -37,7 +39,7 @@ const CartComp = ({allProductsOfStore} : {allProductsOfStore: Array<oneProductTy
       {/* second */}
       <div className=" flex flex-col lg:flex-row gap-6">
         <div className="flex flex-col basis-[69%] gap-2">
-          {AllProductsForCart.map((item: oneProductType, index: number) => (
+          {allProductsForCart.map((item: oneProductType, index: number) => (
             <div key={index} className=" flex flex-shrink-0 gap-6">
               <div className="w-[14rem]">
                 <Image

@@ -16,12 +16,7 @@ const Cart = async () => {
     console.log(allProductsOfStore)
 
     return (
-
-
-        <ContextWrapper>
-            {/* @ts-ignore */}
         <CartComp allProductsOfStore={allProductsOfStore.result} />
-        </ContextWrapper>
     )
 }
 export default Cart
