@@ -7,7 +7,6 @@ import { cartReducer } from "../reducer";
 export const cartContext = createContext<any>(null)
 
 const ContextWrapper = ({children} : {children : ReactNode}) => {
-  let localVal = localStorage.getItem("cartState");
 
     const iniatizilerOfCart = {
         cart : [],
