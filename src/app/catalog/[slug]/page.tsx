@@ -8,7 +8,7 @@ import { Metadata } from "next"
 
 
 // metadata generate
-export async function generateMetadata({ params }: {params:{slug : string}}) {
+ async function generateMetadata({ params }: {params:{slug : string}}) {
     // read route params
     const slug = params.slug;
    

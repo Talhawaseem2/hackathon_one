@@ -36,7 +36,7 @@ const navbar = () => {
             <div className='flex gap-x-2'>
                 {/* Cart */}
                 <div className="flex-shrink-0 relative w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                    <ShoppingCart size={20} />
+                    <Link href={"/cart/"}><ShoppingCart size={20}/></Link>
                 </div>
                 {/* Mobile Nav */}
                 <div className='md:hidden'>

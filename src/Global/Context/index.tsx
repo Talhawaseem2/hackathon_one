@@ -10,12 +10,7 @@ const ContextWrapper = ({children} : {children : ReactNode}) => {
   let localVal = localStorage.getItem("cartState");
 
     const iniatizilerOfCart = {
-        cart : [
-          {
-            productId : "",
-            quantity : 2,
-          },
-        ],
+        cart : [],
     }
 
     const [state, dispatch] = useReducer(cartReducer, iniatizilerOfCart)
