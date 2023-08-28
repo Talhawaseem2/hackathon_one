@@ -2,6 +2,8 @@
 import { ReactNode, createContext, useEffect, useReducer } from "react";
 import React from 'react'
 import { cartReducer } from "../reducer";
+import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 
 export const cartContext = createContext<any>(null)
@@ -28,9 +30,23 @@ const ContextWrapper = ({children} : {children : ReactNode}) => {
     }, [state.cart])
     
 
+    function signUpUser (email : string , password : string){
+     return createUserWithEmailAndPassword(auth, email, password);
+    };
+
+
+    function signInUser (email : string, password:string) {
+      return signInWithEmailAndPassword(auth, email, password)
+    }
+    
+
+    function LogOut () {
+      return signOut(auth);
+    }
+
 
     return (
-    <cartContext.Provider value={{state , dispatch}}>
+    <cartContext.Provider value={{state , dispatch, signUpUser}}>
         {children}
     </cartContext.Provider>
   )
