@@ -57,7 +57,7 @@ if(stateStorage) {
                   <h2 className="md:text-2xl font-light text-gray-700">
                     {item.productName}
                   </h2>
-                  <Trash2 />
+                  <Trash2/>
                 </div>
                 <p className="text-gray-600 font-medium">{item.productTypes[1]?item.productTypes[1]:"All"}</p>
                 <h3 className="text-sm md:text-base font-semibold">
