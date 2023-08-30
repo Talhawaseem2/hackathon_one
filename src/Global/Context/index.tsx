@@ -29,24 +29,8 @@ const ContextWrapper = ({children} : {children : ReactNode}) => {
       localStorage.setItem("cart" , JSON.stringify(state.cart))
     }, [state.cart])
     
-
-    function signUpUser (email : string , password : string){
-     return createUserWithEmailAndPassword(auth, email, password);
-    };
-
-
-    function signInUser (email : string, password:string) {
-      return signInWithEmailAndPassword(auth, email, password)
-    }
-    
-
-    function LogOut () {
-      return signOut(auth);
-    }
-
-
     return (
-    <cartContext.Provider value={{state , dispatch, signUpUser}}>
+    <cartContext.Provider value={{state , dispatch}}>
         {children}
     </cartContext.Provider>
   )

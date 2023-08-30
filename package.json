@@ -17,9 +17,11 @@
     "@types/node": "20.4.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.7",
+    "@vercel/postgres": "^0.4.1",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
+    "drizzle-orm": "^0.28.5",
     "encoding": "^0.1.13",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
@@ -42,6 +44,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@types/react-infinite-scroller": "^1.2.3"
+    "@types/react-infinite-scroller": "^1.2.3",
+    "drizzle-kit": "^0.19.13"
   }
 }
