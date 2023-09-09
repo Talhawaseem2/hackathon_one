@@ -24,7 +24,7 @@ function urlFor(source: any) {
 }
 
 const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
-  let { state, dispatch } = useContext(cartContext);
+  let { dispatch } = useContext(cartContext);
   const [ImageForPreviewOfSelected, setImageForPreviewOfSelected] =
     useState<string>(item.image[0]._key);
   const [quantity, setQuantity] = useState(1);
@@ -46,7 +46,8 @@ const ProductDetail: FC<{ item: oneProductType }> = ({ item }) => {
       productId: item._id,
       quantity: quantity,
     };
-    dispatch({ payload: "addToCart", data: dataToAddInCart });
+    dispatch( "addToCart", dataToAddInCart);
+    // dispatch({ payload: "addToCart", data: dataToAddInCart });
     noification(item.productName)
   }
 

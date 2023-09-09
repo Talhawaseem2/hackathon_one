@@ -14,9 +14,11 @@ import { FC, useEffect, useState } from "react";
 
 const CartComp = ({allProductsOfStore} : {allProductsOfStore: Array<oneProductType>}) => {
 const [allProductsForCart, setallProductsForCart] = useState<any>([])
+
 useEffect(() => {
 let stateStorage : any = localStorage.getItem("cart") as string;
 stateStorage = JSON.parse(stateStorage);
+
 if(stateStorage) {
   let data = allProductsOfStore.filter((item : oneProductType) => {
     for (let index = 0; index < stateStorage.length; index++) {
@@ -28,6 +30,7 @@ if(stateStorage) {
   })
   setallProductsForCart(data);
 }
+console.log(allProductsForCart)
 }, [])
 
   return (
